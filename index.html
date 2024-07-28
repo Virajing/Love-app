@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teleporting Button</title>
+  <style>
+    body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.container {
+    width: 150vh;
+    height: 150vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Add space between the buttons */
+}
+
+#teleportButton {
+    position: absolute;
+    background-color: red;
+    border: none;
+    color: white;
+}
+#Button{
+    background-color: green;
+    border: none;
+    color: white;
+}
+
+  </style>
+</head>
+<body>
+    <p>If you don't answer you are a gay</p>
+  <h1>Do you love me?</h1>
+  <div class="container">
+    <button onclick="yes()" id="Button">Yes</button>
+    <br>
+    <button id="teleportButton">No</button>
+    <br>
+    <p id="p"></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('teleportButton');
+    const container = document.querySelector('.container');
+
+    button.addEventListener('mouseover', () => {
+        const containerRect = container.getBoundingClientRect();
+        const buttonRect = button.getBoundingClientRect();
+
+        const maxX = containerRect.width - buttonRect.width;
+        const maxY = containerRect.height - buttonRect.height;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        button.style.left = `${randomX}px`;
+        button.style.top = `${randomY}px`;
+    });
+});
+
+function yes() {
+    const para = document.getElementById('p');
+    const message = "I know you like me too😍🥰";
+    para.textContent = message;
+    const noButton = document.getElementById('teleportButton');
+    noButton.style.display = 'none';
+}
+
+  </script>
+</body>
+</html>
