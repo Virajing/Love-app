@@ -28,6 +28,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Ensure vertical stacking */
     gap: 20px; /* Space between buttons */
     padding: 20px;
     box-sizing: border-box; /* Ensures padding is included in width and height */
@@ -40,15 +41,17 @@ h1 {
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    position: relative; /* Make sure buttons don't overlap */
 }
 
 #teleportButton {
     background-color: red;
-    position: absolute; /* Allows it to move randomly */
+    position: absolute; /* Allows movement within container */
 }
 
 #Button {
     background-color: green;
+    position: relative; /* Keep this relative for normal flow */
 }
 
 /* Hover effects for buttons */
@@ -77,13 +80,18 @@ h1 {
     .container {
         width: 90vh;
         height: 90vh;
-        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        flex-direction: column; /* Stack buttons vertically */
         gap: 10px;
     }
 
     #teleportButton, #Button {
         padding: 6px 12px;
         font-size: 0.9em;
+        position: relative; /* Keep normal stacking behavior */
+    }
+
+    #teleportButton {
+        position: absolute; /* Allow it to move within the container */
     }
 }
 
@@ -91,14 +99,20 @@ h1 {
     .container {
         width: 80vh;
         height: 80vh;
-        gap: 5px;
+        gap: 20px; /* Increase gap between buttons to avoid overlap */
     }
 
     #teleportButton, #Button {
         padding: 5px 10px;
         font-size: 0.8em;
+        position: relative; /* Normal stacking */
+    }
+
+    #teleportButton {
+        position: absolute; /* Can still move on hover */
     }
 }
+
   </style>
 </head>
 <body>
