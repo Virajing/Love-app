@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Love app</title>
+  <title>Love App</title>
   <style>
-
-    body, html {
+body, html {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -18,41 +17,91 @@
 
 h1 {
     margin-bottom: 20px;
-    text-size: 6vw;
 }
 
 .container {
-    width: 150vh;
-    height: 150vh;
+    width: 100%;
+    max-width: 150vh;
+    height: 100%;
+    max-height: 150vh;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px; /* Add space between the buttons */
+    gap: 20px; /* Space between buttons */
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding is included in width and height */
+}
+
+/* Button Styles */
+#teleportButton, #Button {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 #teleportButton {
-    position: absolute;
     background-color: red;
-    border: none;
-    color: white;
-    width: 5vw;
-    height: 2vh
+    position: absolute; /* Allows it to move randomly */
 }
-#Button{
+
+#Button {
     background-color: green;
-    border: none;
-    color: white;
-    width: 5vw;
-    height: 2vh
 }
 
+/* Hover effects for buttons */
+#teleportButton:hover {
+    background-color: darkred;
+}
 
-  
+#Button:hover {
+    background-color: darkgreen;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .container {
+        width: 100vh;
+        height: 100vh;
+        gap: 15px;
+    }
+
+    #teleportButton, #Button {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90vh;
+        height: 90vh;
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        gap: 10px;
+    }
+
+    #teleportButton, #Button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 80vh;
+        height: 80vh;
+        gap: 5px;
+    }
+
+    #teleportButton, #Button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+}
   </style>
 </head>
 <body>
-    <p>If you don't answer you are a gay</p>
   <h1>Do you love me?</h1>
   <div class="container">
     <button onclick="yes()" id="Button">Yes</button>
@@ -63,34 +112,35 @@ h1 {
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const button = document.getElementById('teleportButton');
-    const container = document.querySelector('.container');
+      const button = document.getElementById('teleportButton');
+      const container = document.querySelector('.container');
 
-    button.addEventListener('mouseover', () => {
-        const containerRect = container.getBoundingClientRect();
-        const buttonRect = button.getBoundingClientRect();
+      button.addEventListener('mouseover', () => {
+          const containerRect = container.getBoundingClientRect();
+          const buttonRect = button.getBoundingClientRect();
 
-        const maxX = containerRect.width - buttonRect.width;
-        const maxY = containerRect.height - buttonRect.height;
+          const maxX = containerRect.width - buttonRect.width;
+          const maxY = containerRect.height - buttonRect.height;
 
-        const randomX = Math.random() * maxX;
-        const randomY = Math.random() * maxY;
+          const randomX = Math.random() * maxX;
+          const randomY = Math.random() * maxY;
 
-        button.style.left = `${randomX}px`;
-        button.style.top = `${randomY}px`;
+          button.style.left = `${randomX}px`;
+          button.style.top = `${randomY}px`;
+      });
     });
-});
 
-function yes() {
-    const para = document.getElementById('p');
-    const message = "I know you like me too😍🥰";
-    para.textContent = message;
-    const noButton = document.getElementById('teleportButton');
-    const yesButton = document.getElementById('Button');
-    noButton.style.display = 'none';
-    Button.style.display = 'none';
-}
-
+    function yes() {
+        const para = document.getElementById('p');
+        const message = "I knew you'd say yes! 😍🥰";
+        para.textContent = message;
+        
+        // Hiding both buttons after "Yes" is clicked
+        const noButton = document.getElementById('teleportButton');
+        const yesButton = document.getElementById('Button');
+        noButton.style.display = 'none';
+        yesButton.style.display = 'none';
+    }
   </script>
 </body>
 </html>
