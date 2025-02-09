@@ -22,8 +22,8 @@
 
     .container {
         position: relative;
-        width: 20vw;
-        height: 20vh;
+        width: 90vw;
+        height: 60vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -32,7 +32,7 @@
     }
 
     /* Button Styles */
-    #teleportButton, #Button {
+    #noButton, #yesButton {
         padding: 12px 24px;
         border: none;
         color: white;
@@ -40,23 +40,21 @@
         transition: background-color 0.3s ease;
         font-size: 1rem;
         border-radius: 8px;
-        position: absolute;
     }
 
-    #teleportButton {
+    #noButton {
         background-color: red;
     }
 
-    #Button {
+    #yesButton {
         background-color: green;
-        position: relative;
     }
 
-    #teleportButton:hover {
+    #noButton:hover {
         background-color: darkred;
     }
 
-    #Button:hover {
+    #yesButton:hover {
         background-color: darkgreen;
     }
 
@@ -69,41 +67,78 @@
 <body>
   <h1>Do you love me?</h1>
   <div class="container">
-    <button onclick="yes()" id="Button">Yes</button>
-    <button onclick="no()" id="teleportButton">No</button>
+    <button onclick="yes()" id="yesButton">Yes</button>
+    <button onclick="no()" id="noButton">No</button>
     <p id="p"></p>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const button = document.getElementById('teleportButton');
-      const container = document.querySelector('.container');
-
-      button.addEventListener('mouseover', () => {
-          const containerRect = container.getBoundingClientRect();
-          const buttonRect = button.getBoundingClientRect();
-
-          const maxX = window.innerWidth - buttonRect.width;
-          const maxY = window.innerHeight - buttonRect.height;
-
-          const randomX = Math.random() * maxX;
-          const randomY = Math.random() * maxY;
-
-          button.style.left = `${randomX}px`;
-          button.style.top = `${randomY}px`;
-      });
-    });
+    let noCounter = 0;
+    const messages = [
+        "Baby, don't do that😥",
+        "Are you sure? 💔",
+        "Please say yes 😢",
+        "I might cry 😭",
+        "Come on, don't break my heart! 💕",
+        "You're making me sad 😞",
+        "Viraj is heartbroken 💔",
+        "Don't make Viraj sad 😢",
+        "Please, baby, reconsider 😭",
+        "You're my everything 💖",
+        "Without you, I feel lost 😞",
+        "I can't believe you're saying no 😭",
+        "Is this really what you want? 💔",
+        "You are my world! 🌎",
+        "Don't do this, love 😢",
+        "You're making me cry 💦",
+        "I need you! 💕",
+        "Viraj won't give up on you 😌",
+        "Every 'No' hurts more 😢",
+        "I still love you anyway 😍",
+        "How can you say no to this face? 🥺",
+        "One more chance, please! 💘",
+        "Let's try again, love 💞",
+        "Don't break my heart like this 💔",
+        "Come back, my love! 😥",
+        "I know you love me deep inside 💕",
+        "Think again before breaking my heart 💝",
+        "I'm serious, baby! 😘",
+        "Do you really mean that? 😰",
+        "Viraj is not happy with this response 😭",
+        "I believe in our love 💗",
+        "You're the light of my life ✨",
+        "I can't handle rejection 💔",
+        "Why are you hurting me like this? 😞",
+        "Give me another chance! 🥰",
+        "Don't let this be the end 😭",
+        "You’re my soulmate! 💞",
+        "I thought we were forever 💕",
+        "Please change your mind! 😘",
+        "Just one 'Yes' and I'll be the happiest! 😊",
+        "How can you resist me? 🤭",
+        "You know you love me too! 💖",
+        "This is just a misunderstanding, right? 😰",
+        "You're my everything, please don't do this! 💔",
+        "I won't stop until you say yes! 😘",
+        "What if I bribe you with love? 🥺",
+        "Come on, don't be so mean! 😣",
+        "Even the stars say we belong together! ✨",
+        "No? Really? That hurts 😢",
+        "Every 'No' makes me love you more 💖",
+        "Just say yes, you won't regret it! 😘"
+    ];
 
     function yes() {
         const para = document.getElementById('p');
         para.textContent = "I knew you'd say yes! 😍🥰";
-        document.getElementById('teleportButton').style.display = 'none';
-        document.getElementById('Button').style.display = 'none';
+        document.getElementById('noButton').style.display = 'none';
+        document.getElementById('yesButton').style.display = 'none';
     }
 
     function no() {
         const para = document.getElementById('p');
-        para.textContent = "I am serious baby😘😥";
+        para.textContent = messages[noCounter % messages.length];
+        noCounter++;
     }
   </script>
 </body>
